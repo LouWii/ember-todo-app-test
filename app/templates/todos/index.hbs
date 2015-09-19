@@ -1,7 +1,5 @@
 <ul id="todo-list">
   {{#each model as |todo|}}
-    <li class="{{if todo.complete 'completed'}}">
-      {{todo-item todo=todo}}
-    </li>
+    {{todo-item todo=todo updateTodo="updateTodo" deleteTodo="deleteTodo"}}
   {{/each}}
 </ul>

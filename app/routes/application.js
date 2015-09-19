@@ -9,14 +9,16 @@ export default Ember.Route.extend({
       id: 1,
       title: "First to-do",
       description: "Make this app working !",
-      creationDate: new Date()
+      creationDate: new Date(),
+      isCompleted: false
     });
 
     this.store.push('todo', {
       id: 2,
       title: "Second to-do",
       description: "Make this working in Electron",
-      creationDate: new Date()
+      creationDate: new Date(),
+      isCompleted: false
     });
   }
 });

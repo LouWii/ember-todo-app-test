@@ -15,5 +15,20 @@ export default Ember.Route.extend({
     //   }
     // ];
     return todos;
+  },
+  actions: {
+    createTodo(newTitle) {
+      this.store.createRecord('todo', {
+        title: newTitle,
+        isCompleted: false,
+        creationDate: new Date()
+      }).save();
+    },
+    updateTodo(todo) {
+      todo.save();
+    },
+    deleteTodo(todo) {
+      todo.destroyRecord();
+    }
   }
 });

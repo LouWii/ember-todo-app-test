@@ -61,6 +61,8 @@ export default function() {
       - db.{collection}.update(target, attrs)
       - db.{collection}.remove(target)
 
+    // db is populated with factories (see /mirage/factories folder)
+
     // Example: return a single object with related models
     this.get('/contacts/:id', function(db, request) {
       var contactId = +request.params.id;
