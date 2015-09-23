@@ -104,6 +104,19 @@ export default function() {
           }
       };
   });
+  this.put('/todos/:id', function(db, request) {
+      let attrs = JSON.parse(request.requestBody);
+      let todo = db.todos.update(attrs.data.id, attrs.data.attributes);
+      return {
+          data: {
+              type: "todos",
+              id: todo.id,
+              attributes: todo
+          }
+      };
+  });
+
+
   this.del('/todos/:id');
 
 
