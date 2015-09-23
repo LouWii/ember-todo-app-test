@@ -18,7 +18,7 @@ export default Ember.Component.extend({
   }),
   actions: {
     clearCompleted() {
-      let completed = this.get('todos').filterBy('complete', true);
+      let completed = this.get('todos').filterBy('isCompleted', true);
       completed.forEach((todo) => {
         this.sendAction('deleteTodo', todo);
       });
