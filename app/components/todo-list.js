@@ -16,6 +16,23 @@ export default Ember.Component.extend({
   hasCompleted: Ember.computed('completed', function() {
     return this.get('completed') > 0;
   }),
+  // Hook called each time the component is rendered or re-rendered (on a data change)
+  didInsertElement() {
+    let todos = this.get('todos');
+    if (todos.get('length') > 0 && todos.isEvery('isCompleted', true)) {
+      this.set('allAreDone', true);
+    } else {
+      this.set('allAreDone', false);
+    }
+  },
+  allAreDoneObserver: Ember.observer('allAreDone', function() {
+    let completeValue = this.get('allAreDone');
+    let todos = this.get('todos');
+    todos.forEach((todo) => {
+      todo.set('complete', completeValue)
+      this.sendAction('updateTodo', todo);
+    });
+  }),
   actions: {
     clearCompleted() {
       let completed = this.get('todos').filterBy('isCompleted', true);
